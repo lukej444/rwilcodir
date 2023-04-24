@@ -1,0 +1,84 @@
+/* Body styling */
+body {
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+img {
+  display: block;
+  margin: 0 auto;
+  max-wdith: 35%;
+}
+
+/* Logo styling */
+header img {
+  display: block;
+  margin: 0 auto;
+  max-width: 45%;
+  height: auto;
+}
+
+/* Form styling */
+form {
+  background-color: white;
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+  width: 400px;
+  margin: 0 auto;
+  padding: 30px;
+}
+
+form input[type=text],
+form input[type=password] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+form button {
+  background-color: #4CAF50;
+  border: none;
+  color: white;
+  padding: 12px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: block;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin: 20px auto 0;
+  width: 100%;
+}
+
+form button:hover {
+  background-color: #3e8e41;
+}
+
+form label {
+  font-size: 14px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Card styling */
+.card {
+  border: none;
+  box-shadow: none;
+}
+
+.card-header {
+  background-color: white;
+  border-bottom: none;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.card-body {
+  padding: 0;
+}

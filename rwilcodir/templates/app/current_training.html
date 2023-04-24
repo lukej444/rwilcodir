@@ -1,0 +1,47 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Current Training{% endblock %}
+
+{% block content %}
+  <div class="container-fluid mt-4">
+    <div class="row">
+      <div class="col-md-6">
+        <h3 class="mb-4">Current Training Progress</h3>
+        <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: {{ completion_percentage }}%" aria-valuenow="{{ completion_percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <div class="text-center mt-2">{{ completion_percentage }}% Complete</div>
+      </div>
+    </div>
+    <div class="row mt-4">
+      <div class="col-md-12">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Training Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Completion Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for trainingstatus in training_statuses %}
+              <tr>
+                <td>{{ trainingstatus.training.name }}</td>
+                <td>{{ trainingstatus.training.description }}</td>
+                <td>{% if trainingstatus.completion_date %}Complete{% else %}Incomplete{% endif %}</td>
+              </tr>
+            {% empty %}
+              <tr>
+                <td colspan="3">No current training assigned.</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet" type="text/css" href="{% static 'app/css/current_training.css' %}">
+{% endblock %}

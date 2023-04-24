@@ -1,0 +1,55 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Supervisor{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div class="col">
+      <h1 class="text-center">Employee List</h1>
+      {% if employee_stats %}
+        {% for stats in employee_stats %}
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th colspan="2">Employee Name: {{ stats.employee }}</th>
+              </tr>
+              <tr>
+                <th>Training Name</th>
+                <th>Due Date</th>
+                <th>Completion Date</th>
+                <th>Completion Percentage</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% if stats.trainings %}
+                {% for training in stats.trainings %}
+                  <tr>
+                    <td>{{ training.training.name }}</td>
+                    <td>{{ training.due_date }}</td>
+                    <td>{{ training.completion_date|default_if_none:"Not completed" }}</td>
+                    <td>{{ training.percent_complete }}%</td>
+                  </tr>
+                {% endfor %}
+              {% else %}
+                <tr>
+                  <td colspan="4">No trainings assigned.</td>
+                </tr>
+              {% endif %}
+            </tbody>
+          </table>
+        {% endfor %}
+      {% else %}
+        <div class="alert alert-warning" role="alert">
+          There are no employees to show.
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extracss %}
+  <link rel="stylesheet" type="text/css" href="{% static 'app/css/supervisor.css' %}">
+{% endblock %}

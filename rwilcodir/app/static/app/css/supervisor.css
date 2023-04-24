@@ -1,0 +1,121 @@
+/* Center the content */
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Style the employee tables */
+.employee-table {
+  margin: 20px 0;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.employee-table td, .employee-table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+.employee-table th {
+  text-align: left;
+  background-color: #f2f2f2;
+}
+
+.employee-table tr:nth-child(even){background-color: #f2f2f2;}
+
+.employee-table tr:hover {background-color: #ddd;}
+
+.employee-table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Style the completion percentages */
+.completion-percentage {
+  display: inline-block;
+  margin-left: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  width: 100px;
+  text-align: center;
+}
+
+.completion-percentage.complete {
+  background-color: green;
+}
+
+.completion-percentage.incomplete {
+  background-color: red;
+}
+
+/* Style the "no employees" message */
+.no-employees {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 50px;
+}
+
+/* New table styles */
+
+.employee-table-header {
+  background-color: #4CAF50;
+  color: white;
+  font-weight: bold;
+}
+
+.employee-name-col {
+  width: 30%;
+}
+
+.employee-id-col {
+  width: 15%;
+}
+
+.training-name-col {
+  width: 30%;
+}
+
+.due-date-col {
+  width: 15%;
+}
+
+.completion-date-col {
+  width: 15%;
+}
+
+.completion-percentage-col {
+  width: 15%;
+}
+
+.employee-table th, .employee-table td {
+  text-align: left;
+  padding: 8px;
+  vertical-align: middle;
+}
+
+.employee-table .completion-percentage-col {
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .employee-table td, .employee-table th {
+    padding: 4px;
+    font-size: 12px;
+  }
+
+  .employee-table th {
+    font-size: 14px;
+  }
+
+  .completion-percentage {
+    padding: 2px;
+    font-size: 12px;
+    width: 80px;
+  }
+}

@@ -1,0 +1,16 @@
+/* Center the search bar */
+#search-bar {
+  margin: 0 auto;
+  width: 50%;
+}
+
+/* Center the table */
+table {
+  margin: 0 auto;
+  width: 50%;
+}
+
+/* Set the text color of the search results message */
+#search-results-message {
+  color: red;
+}

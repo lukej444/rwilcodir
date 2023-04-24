@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Employee Search{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+  <h1 class="mt-4">Employee Search</h1>
+  <form method="GET" class="mb-4">
+    <div class="input-group">
+      <input type="text" class="form-control" placeholder="Search Using Employee ID Number" name="search" value="{{ search_query }}">
+      <button type="submit" class="btn btn-primary">Search</button>
+    </div>
+  </form>
+  {% if error_message %}
+    <p class="text-danger">{{ error_message }}</p>
+  {% elif employees %}
+    <h2>Results for "{{ search_query }}"</h2>
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Username</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for employee in employees %}
+          <tr>
+            <td>{{ employee.employee_id }}</td>
+            <td>{{ employee.get_full_name }}</td>
+            <td>{{ employee.username }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% elif search_query %}
+    <p>No employee found with ID "{{ search_query }}".</p>
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block extracss %}
+<link rel="stylesheet" href="{% static 'app/css/employee_search.css' %}">
+{% endblock %}

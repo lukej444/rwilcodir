@@ -1,0 +1,56 @@
+{% extends 'app/base.html' %}
+{% load static %}
+
+{% block title %}Training Search{% endblock %}
+
+{% block content %}
+<div class="container search-container">
+  <div class="row">
+    <div class="col-md-12">
+      <h1>Training Search</h1>
+      <form class="form-inline" method="post">
+        {% csrf_token %}
+        <input type="text" class="form-control mb-2 mr-sm-2" id="search" name="search_query" placeholder="Search for a training">
+        <button type="submit" class="btn btn-primary mb-2">Search</button>
+      </form>
+    </div>
+  </div>
+  {% if trainings %}
+    <div class="row">
+      <div class="col-md-12">
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Training ID</th>
+              <th>Training Name</th>
+              <th>Description</th>
+              <th>Due Date</th>
+              <th>Completion Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for training in trainings %}
+              <tr>
+                <td>{{ training.training_id }}</td>
+                <td>{{ training.name }}</td>
+                <td>{{ training.description }}</td>
+                <td>{{ training.trainingstatus_set.first.due_date }}</td>
+                <td>{{ training.trainingstatus_set.first.completion_date|default_if_none:"Not Completed" }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  {% elif search_query %}
+    <div class="row">
+      <div class="col-md-12">
+        <p>No training found with the name or ID "{{ search_query }}".</p>
+      </div>
+    </div>
+  {% endif %}
+</div>
+{% endblock %}
+{% block extracss %}
+<link rel="stylesheet" type="text/css" href="{% static 'app/css/training_search.css' %}">
+{% endblock %}

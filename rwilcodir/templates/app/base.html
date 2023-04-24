@@ -1,0 +1,74 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'app/css/base.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    {% block extracss %}{% endblock %}
+</head>
+<body>
+    <div class="logo-container">
+        <img class="logo" src="{% static 'app/images/logo_color.svg' %}" alt="Company Logo">
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-danger">
+        <div class="container">
+            
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    {% if request.user.is_authenticated %}
+			    <li class="nav-item {% if request.resolver_match.url_name == 'current_training' %}active{% endif %}">
+                                <a class="nav-link" href="{% url 'app:current_training' %}">Current Training</a>
+                            </li>
+                        {% if request.user.is_supervisor %}
+                            <li class="nav-item {% if request.resolver_match.url_name == 'supervisor' %}active{% endif %}">
+                                <a class="nav-link" href="{% url 'app:supervisor' %}">Supervisor</a>
+                            </li>
+                            <li class="nav-item {% if request.resolver_match.url_name == 'employee_search' %}active{% endif %}">
+                                <a class="nav-link" href="{% url 'app:employee_search' %}">Employee Search</a>
+                            </li>
+                        {% endif %}
+			    <li class="nav-item {% if request.resolver_match.url_name == 'training_search' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'app:training_search' %}">Training Search</a>
+                            </li>
+                    {% endif %}
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    {% if request.user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'app:help_view' %}">Help</a>
+                        </li>
+                        <li class="nav-item">
+                            <form method="post" action="{% url 'logout' %}" class="form-inline">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-link nav-link">Logout</button>
+                            </form>
+                        </li>
+                    {% else %}
+                        <li class="nav-item {% if request.resolver_match.url_name == 'login' %}active{% endif %}">
+                            <a class="nav-link" href="{% url 'login' %}">Login</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    {% block extrajs %}{% endblock %}
+</body>
+</html>

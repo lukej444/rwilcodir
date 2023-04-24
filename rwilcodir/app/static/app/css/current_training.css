@@ -1,0 +1,26 @@
+.progress-bar {
+  height: 30px;
+  border-radius: 15px;
+}
+
+.progress {
+  margin-bottom: 30px;
+}
+
+.table th, .table td {
+  border-top: none !important;
+  border-bottom: none !important;
+}
+
+.table th {
+  font-weight: bold;
+}
+
+.table td:first-child {
+  font-weight: bold;
+}
+
+.table td:last-child {
+  text-align: center;
+}
+
